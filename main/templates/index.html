@@ -8,7 +8,9 @@
     <link rel="stylesheet" types="text/css" href="{% static 'css/index.css' %}" />
   </head>
   <body>
-    <button>회원가입</button>
+    <a href="{% url 'signup' %}">
+      <button>회원가입</button>
+    </a>
     <div class="make_jss">
       <a href="{% url 'create' %}">
         <div class="plus_btn">
