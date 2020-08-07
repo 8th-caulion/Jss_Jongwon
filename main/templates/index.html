@@ -16,6 +16,12 @@
       <button>로그인</button>
     </a>
 
+    <a href="{% url 'logout' %}">
+      <button>로그아웃</button>
+    </a>
+
+    안녕하세요! {{user}}님!
+
     <div class="make_jss">
       <a href="{% url 'create' %}">
         <div class="plus_btn">
