@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import JssForm
 from .models import Jasoseol
-from django.http import Http404
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 def index(request):
@@ -32,14 +32,17 @@ def detail(request, jss_id):
 
 def delete(request, jss_id):
     
-    jss = get_object_or_404(Jasoseol, pk=jss_id)
+    jss = get_object_or_404(Jasoseol, pk=jss_id)    
+    if request.user == jss.author:
+        jss.delete()
+        return redirect('index')
 
-    jss.delete()
-
-    return redirect('index')
+    raise PermissionDenied
 
 def update(request, jss_id):
     jss = get_object_or_404(Jasoseol, pk=jss_id)
+    if request.user != jss.author:
+        raise PermissionDenied
     jss_form = JssForm(instance=jss)
 
     if request.method == "POST":
