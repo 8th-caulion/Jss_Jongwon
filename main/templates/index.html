@@ -16,38 +16,19 @@
       </a>
       <p>자기소개서 작성</p>
     </div>
+
+    {% for jss in all_jss %}
     <div class="all_jss">
       <p>
-        자기소개서 제목
+        {{jss.title}}
       </p>
       <p>
-        자기소개서 내용
+        {{jss.content}}
       </p>
       <p>
-        날짜
+        {{jss.updated_at}}
       </p>
     </div>
-    <div class="all_jss">
-      <p>
-        자기소개서 제목
-      </p>
-      <p>
-        자기소개서 내용
-      </p>
-      <p>
-        날짜
-      </p>
-    </div>
-    <div class="all_jss">
-      <p>
-        자기소개서 제목
-      </p>
-      <p>
-        자기소개서 내용
-      </p>
-      <p>
-        날짜
-      </p>
-    </div>
+    {% endfor %}
   </body>
 </html>
