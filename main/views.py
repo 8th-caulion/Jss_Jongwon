@@ -11,6 +11,11 @@ def index(request):
 
     return render(request, 'index.html', {'all_jss' : all_jss})
 
+def my_index(request):
+    my_jss = Jasoseol.objects.filter(author=request.user)
+
+    return render(request, 'index.html', {'all_jss' : my_jss})
+
 @login_required(login_url='/login')
 def create(request):
     if request.method == "POST":
