@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import JssFormm
 
 # Create your views here.
 def index(request):
@@ -6,4 +7,11 @@ def index(request):
 
 
 def create(request):
-    return render(request, 'create.html')
+    if request.method == "POST":
+        filled_form = JssFormm(request.POST)
+        if filled_form.is_valid():
+            filled_form.save()
+            return redirect('index')
+    else:
+        jss_form = JssFormm()
+        return render(request, 'create.html', {'jss_form' : jss_form})
