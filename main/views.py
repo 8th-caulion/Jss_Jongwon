@@ -19,3 +19,10 @@ def create(request):
     else:
         jss_form = JssForm()
         return render(request, 'create.html', {'jss_form' : jss_form})
+
+def detail(request, jss_id):
+    
+    jss = Jasoseol.objects.get(pk=jss_id)
+
+
+    return render(request, 'detail.html', {'jss' : jss })

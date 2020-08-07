@@ -20,5 +20,6 @@ from main import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index"),
-    path('create/', views.create, name="create")
+    path('create/', views.create, name="create"),
+    path('detail/<int:jss_id>', views.detail, name="detail"),
 ]
