@@ -26,3 +26,11 @@ def detail(request, jss_id):
 
 
     return render(request, 'detail.html', {'jss' : jss })
+
+def delete(request, jss_id):
+    
+    jss = Jasoseol.objects.get(pk=jss_id)
+
+    jss.delete()
+
+    return redirect('index')
