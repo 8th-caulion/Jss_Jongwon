@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import JssForm
 from .models import Jasoseol
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -10,7 +11,7 @@ def index(request):
 
     return render(request, 'index.html', {'all_jss' : all_jss})
 
-
+@login_required(login_url='/login')
 def create(request):
     if request.method == "POST":
         filled_form = JssForm(request.POST)
