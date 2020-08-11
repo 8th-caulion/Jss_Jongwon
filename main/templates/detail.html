@@ -22,3 +22,11 @@
   {% csrf_token %} {{comment_form}}
   <input type="submit" value="확인" />
 </form>
+
+{% for comment in jss.comment_set.all %}
+
+<p>
+  {{comment.author}} 🗣 {{comment.content}}
+</p>
+
+{% endfor %}
