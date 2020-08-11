@@ -72,3 +72,10 @@ def create_comment(request, jss_id):
         temp_form.save()
     return redirect('detail', jss_id)
 
+def delete_comment(request, jss_id, comment_id):
+    comment = Comment.objects.get(pk=comment_id)
+    if request.user == comment.author:
+        comment.delete()
+        return redirect('detail', jss_id)
+    else:
+        raise PermissionDenied

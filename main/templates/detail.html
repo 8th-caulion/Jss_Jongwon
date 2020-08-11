@@ -17,16 +17,17 @@
   <button>삭제</button>
 </a>
 
-{% endif %}
+{% endif %} {% if user.is_authenticated %}
 <form method="POST" action="{% url 'create_comment' jss.id %}">
   {% csrf_token %} {{comment_form}}
   <input type="submit" value="확인" />
 </form>
-
-{% for comment in jss.comment_set.all %}
+{% endif %} {% for comment in jss.comment_set.all %}
 
 <p>
-  {{comment.author}} 🗣 {{comment.content}}
+  {{comment.author}} 🗣 {{comment.content}} {% if user == comment.user %}
+  <a href="{% url 'delete_comment' jss.id comment.id %}"><button>삭제</button></a>
+  {% endif %}
 </p>
 
 {% endfor %}
