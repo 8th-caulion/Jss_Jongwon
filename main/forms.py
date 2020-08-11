@@ -20,6 +20,7 @@ class JssForm(forms.ModelForm):
         })
 
         self.fields['content'].widget.attrs.update({
+            'class' : 'jss_content_form',
             'placeholder' : '자기소개서 내용을 입력하세요'
         })
 
